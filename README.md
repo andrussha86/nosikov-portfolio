@@ -31,7 +31,9 @@ python -m http.server 5173
 
 ## Доступ из интернета, пока включён компьютер
 
-Из папки проекта в PowerShell:
+Пошаговая инструкция со схемой и решением проблем — [docs/public-server.md](docs/public-server.md).
+
+Коротко — из папки проекта в PowerShell:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\start-public.ps1
@@ -42,6 +44,7 @@ powershell -ExecutionPolicy Bypass -File .\start-public.ps1
 В выводе появится ссылка вида `https://....lhr.life` — её можно отправлять.
 
 - Окно терминала должно оставаться открытым, компьютер — включённым и в сети.
+- Если сервис оборвёт соединение, скрипт переподключится сам.
 - При каждом запуске ссылка новая. Постоянный адрес — бесплатный аккаунт на
   localhost.run или хостинг (GitHub Pages).
 - Вариант через Cloudflare: `.\start-public.ps1 -Cloudflare` (нужен `cloudflared`;
