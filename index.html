@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Андрей Носиков</title>
+<meta name="description" content="Андрей Носиков — UX/UI-дизайнер мобильных приложений. Кейсы PARQ, МетеоРитм, Dark Case, JAIS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="site.js" defer></script>
+<script type="module" src="gradient.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="index.html">Андрей Носиков</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#work">Проекты</a>
+      <a href="#process">Процесс</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Включить светлую тему">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <a class="btn btn--ghost" href="https://drive.google.com/file/d/1KW72V9AqKmUf5U7g_xADl_Whr7oIkT4C/view?usp=sharing" data-open="resume" aria-haspopup="dialog">Резюме</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="name">
+    <div class="sg sg--hero" data-gradient="hero" aria-hidden="true"></div>
+    <div class="wrap grid">
+      <h1 class="hero__name c-main" id="name"><span>Андрей</span><span>Носиков</span></h1>
+      <div class="hero__photo c-side"><img src="img/portrait.webp" width="1100" height="1100" alt="Андрей Носиков, портрет"></div>
+      <div class="hero__text c-main">
+        <p class="hero__lede">UX/UI-дизайнер мобильных приложений. Веду продукт от интервью с пользователями и JTBD до прототипа и UI-кита.</p>
+        <p class="hero__meta">Бакалавр прикладной информатики, сейчас в магистратуре СПбГУТ по направлению «Информационные технологии в дизайне». Санкт-Петербург.</p>
+        <p class="status">Открыт к работе в продуктовой команде</p>
+        <div class="actions">
+          <a class="btn" href="https://t.me/quelt_a" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn--ghost" href="https://drive.google.com/file/d/1KW72V9AqKmUf5U7g_xADl_Whr7oIkT4C/view?usp=sharing" data-open="resume" aria-haspopup="dialog">Посмотреть резюме</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-t">
+    <div class="wrap">
+      <div class="section__head grid">
+        <h2 class="section__title c-main" id="work-t">Проекты</h2>
+        <p class="section__note c-side">Два полных кейса с исследованием и два концепта на Behance.</p>
+      </div>
+
+      <article class="case grid">
+        <a class="case__media c-main" href="parq.html" tabindex="-1" aria-hidden="true"><img src="img/cover-parq.webp" width="1680" height="1120" alt="" loading="lazy"></a>
+        <div class="case__body c-side">
+          <h3 class="case__title">PARQ</h3>
+          <p class="case__kind">Дипломный проект: приложение и кабинет владельца парковки</p>
+          <p class="case__desc">Поиск свободного места, оплата и продление парковки в пару касаний — и аналитика загрузки для частных владельцев и муниципалитетов.</p>
+          <ul class="did">
+            <li>Полный цикл: от JTBD и User Flow до финального UI</li>
+            <li>Интервью, edge cases, дизайн-система</li>
+            <li>Дашборд выручки и загрузки для владельцев</li>
+          </ul>
+          <a class="btn" href="parq.html">Читать кейс PARQ</a>
+        </div>
+      </article>
+
+      <article class="case grid">
+        <a class="case__media c-main" href="meteoritm.html" tabindex="-1" aria-hidden="true"><img src="img/cover-meteo.webp" width="1536" height="1024" alt="" loading="lazy"></a>
+        <div class="case__body c-side">
+          <h3 class="case__title">МетеоРитм</h3>
+          <p class="case__kind">Стартап акселератора «Гидромет-Геосфера», ТОП-8 из 50</p>
+          <p class="case__desc">Персональные предупреждения для метеозависимых людей: прогноз переведён на язык самочувствия, а дневник помогает замечать закономерности.</p>
+          <ul class="did">
+            <li>Роль Product Owner и Lead Designer</li>
+            <li>Визуализация сложных метеоданных</li>
+            <li>Юзабилити-тесты и питч перед экспертами</li>
+          </ul>
+          <a class="btn" href="meteoritm.html">Читать кейс МетеоРитм</a>
+        </div>
+      </article>
+
+      <div class="minor">
+        <a class="minor__item grid" href="https://www.behance.net/gallery/228530009/Dark-case-(ios-app)" target="_blank" rel="noopener">
+          <div class="case__media c-label"><img src="img/cover-darkcase.webp" width="1529" height="757" alt="" loading="lazy"></div>
+          <div class="c-mid"><h3>Dark Case</h3><p>Концепт iOS-приложения. Аудит сценариев, прототип и визуальный стиль, убрал лишние шаги в навигации.</p></div>
+          <span class="minor__go c-side">Открыть на Behance</span>
+        </a>
+        <a class="minor__item grid" href="https://www.behance.net/gallery/224512513/JAIS-BARBERSHOP" target="_blank" rel="noopener">
+          <div class="case__media c-label"><img src="img/cover-jais.webp" width="1536" height="754" alt="" loading="lazy"></div>
+          <div class="c-mid"><h3>JAIS</h3><p>Мобильная версия для барбершопа. Структура, вайрфреймы, UI Kit и доработки по итогам юзабилити-тестов.</p></div>
+          <span class="minor__go c-side">Открыть на Behance</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" aria-labelledby="process-t">
+    <div class="wrap">
+      <div class="section__head grid">
+        <h2 class="section__title c-main" id="process-t">Как я веду проект</h2>
+        <p class="section__note c-side">Один и тот же маршрут в PARQ и МетеоРитме: сначала понять людей, потом рисовать.</p>
+      </div>
+      <ol class="flow thirds">
+        <li><b>Аудитория</b><span>Кто пользователь и в какой ситуации</span></li>
+        <li><b>Конкуренты</b><span>Общие паттерны и слабые места</span></li>
+        <li><b>Референсы</b><span>Настроение и визуальные решения</span></li>
+        <li><b>JTBD</b><span>Core Job, Growth, Desired Outcome</span></li>
+        <li><b>User Flow</b><span>Каждый шаг и edge case на схеме</span></li>
+        <li><b>Вайрфреймы</b><span>Детально, чтобы потом не двигать фреймы</span></li>
+        <li class="v"><b>UI</b><span>Цвет только там, где нужен акцент</span></li>
+        <li class="v"><b>UI-kit</b><span>Компоненты, стили и состояния для разработки</span></li>
+        <li class="r"><b>Готовый продукт</b><span>Макеты, прототип и UI-kit уходят в разработку</span></li>
+      </ol>
+      <div class="legend" aria-hidden="true"><span><i></i>Исследование и структура</span><span><i class="ui"></i>Визуальный дизайн</span><span><i class="done"></i>Результат</span></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="skills-t">
+    <div class="wrap">
+      <div class="section__head grid">
+        <h2 class="section__title c-main" id="skills-t">Навыки</h2>
+        <p class="section__note c-side">Figma, Tilda, Photoshop, Illustrator. <span class="nowrap">Английский — B1.</span></p>
+      </div>
+      <div class="skills thirds">
+        <section>
+          <h3>Исследования</h3>
+          <ul><li>Jobs To Be Done</li><li>UX-Research и интервью</li><li>User Stories и CJM</li><li>User Flow и edge cases</li><li>A/B-тесты, юнит-экономика</li></ul>
+        </section>
+        <section>
+          <h3>Визуальный дизайн</h3>
+          <ul><li>Визуальный стиль</li><li>Типографика</li><li>Теория цвета</li><li>Дизайн-системы</li><li>Адаптивный дизайн</li></ul>
+        </section>
+        <section>
+          <h3>Figma</h3>
+          <ul><li>Auto Layout</li><li>Компоненты и варианты</li><li>Variables и стили</li><li>Прототипирование</li><li>Анимация</li></ul>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-t">
+    <div class="wrap">
+      <div class="section__head grid"><h2 class="section__title c-main" id="about-t">Обо мне</h2></div>
+      <div class="about grid">
+        <div class="about__text c-main">
+          <p>Я UX/UI-дизайнер с техническим бэкграундом. Благодаря системному анализу делаю макеты, которые учитывают все состояния системы и легко передаются в разработку.</p>
+          <p>Ещё я спортсмен — от тренировок у меня привычка к режиму и к честной обратной связи. Со мной легко договориться.</p>
+        </div>
+        <dl class="facts c-side">
+          <div><dt>Акселератор</dt><dd><button class="linkish" type="button" data-open="cert" aria-haspopup="dialog">«Гидромет-Геосфера», 2025 — ТОП-8 из 50</button></dd></div>
+          <div><dt>Курс</dt><dd>Веб-дизайн 3.0, Саня Кво, 2024</dd></div>
+          <div><dt>Языки</dt><dd>Русский — родной, <span class="nowrap">английский — B1</span></dd></div>
+        </dl>
+      </div>
+
+      <h3 class="edu-title">Образование</h3>
+      <ol class="edu thirds">
+        <li class="is-done">
+          <span class="edu__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span class="edu__when">2022–2026, завершено</span>
+          <h4>Бакалавриат, РГГМУ</h4>
+          <p>Прикладная информатика, Институт информационных систем и геотехнологий. Дипломный проект — PARQ.</p>
+        </li>
+        <li class="is-now">
+          <span class="edu__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg></span>
+          <span class="edu__when">С 2026, сейчас</span>
+          <h4>Магистратура, СПбГУТ</h4>
+          <p>Информационные технологии в дизайне.</p>
+        </li>
+        <li class="is-next">
+          <span class="edu__node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg></span>
+          <span class="edu__when">Дальше</span>
+          <h4>Продуктовая команда</h4>
+          <p>Ищу команду, где можно расти в UX/UI мобильных продуктов. <a href="#contact">Напишите мне</a>.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+
+</main>
+
+<div class="night">
+  <div class="sg sg--night" data-gradient="night" aria-hidden="true"></div>
+  <section class="section contact" id="contact" aria-labelledby="contact-t">
+    <div class="wrap">
+      <div class="section__head grid"><h2 class="section__title c-main" id="contact-t">Давайте обсудим задачу</h2></div>
+      <a class="contact__mail" href="mailto:2004nosikov@mail.ru">2004nosikov@mail.ru</a>
+      <ul class="links thirds">
+        <li><a href="https://t.me/quelt_a" target="_blank" rel="noopener">Telegram <span>@quelt_a</span></a></li>
+        <li><a href="tel:+79821903942">Телефон <span>+7 982 190-39-42</span></a></li>
+        <li><a href="https://spb.hh.ru/resume/1ca2acc7ff0b48c5d80039ed1f594c43616c6b" target="_blank" rel="noopener">hh.ru <span>Резюме</span></a></li>
+        <li><a href="https://www.behance.net/andrussha86" target="_blank" rel="noopener">Behance <span>andrussha86</span></a></li>
+        <li><a href="https://vk.com/andrussha86" target="_blank" rel="noopener">ВКонтакте <span>andrussha86</span></a></li>
+      </ul>
+    </div>
+  </section>
+  <footer class="foot">
+  <div class="wrap"><span>© 2026 Андрей Носиков</span><a href="#main">Наверх</a></div>
+</footer>
+</div>
+
+<!-- Резюме -->
+<dialog class="modal" id="resume" aria-labelledby="resume-t">
+  <div class="modal__bar">
+    <h2 id="resume-t">Резюме</h2>
+    <a class="btn btn--ghost" href="https://drive.google.com/file/d/1KW72V9AqKmUf5U7g_xADl_Whr7oIkT4C/view?usp=sharing" target="_blank" rel="noopener">Скачать PDF</a>
+    <a class="btn btn--ghost" href="https://spb.hh.ru/resume/1ca2acc7ff0b48c5d80039ed1f594c43616c6b" target="_blank" rel="noopener">Открыть на hh.ru</a>
+    <button class="close" type="button" data-close aria-label="Закрыть резюме"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+  </div>
+  <div class="modal__body">
+    <div class="cv grid">
+      <div class="cv__head c-full">
+        <img src="img/portrait.webp" width="96" height="96" alt="">
+        <div><h3>Носиков Андрей Алексеевич</h3><p>UX/UI Designer, Санкт-Петербург</p></div>
+      </div>
+
+      <aside class="cv__side c-label">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="mailto:2004nosikov@mail.ru">2004nosikov@mail.ru</a></li>
+          <li><a href="tel:+79821903942">+7 982 190-39-42</a></li>
+          <li><a href="https://t.me/quelt_a" target="_blank" rel="noopener">Telegram @quelt_a</a></li>
+        </ul>
+        <h4>Программы</h4>
+        <ul class="chips"><li>Figma</li><li>Tilda</li><li>Photoshop</li><li>Illustrator</li></ul>
+        <h4>Пользовательский опыт</h4>
+        <ul class="chips"><li>CJM</li><li>User Story</li><li>Wireframing</li><li>Prototyping</li><li>A/B testing</li><li>JTBD</li><li>User Flow</li><li>UX-Research</li><li>Unit-economics</li><li>Edge Cases</li></ul>
+        <h4>Интерфейсы</h4>
+        <ul class="chips"><li>Auto Layout</li><li>Design Systems</li><li>Components</li><li>UI Kit</li><li>Styles</li><li>Variables</li><li>State Design</li></ul>
+        <h4>Языки</h4>
+        <ul><li>Русский — родной</li><li class="nowrap">Английский — B1</li></ul>
+      </aside>
+
+      <div class="c-body">
+        <h4>Опыт</h4>
+        <article class="job">
+          <div class="job__head"><h5>HealthTech-стартап и инфраструктурные проекты</h5><span>июнь — декабрь 2025</span></div>
+          <p>UX/UI Designer</p>
+
+          <h6><a href="parq.html">PARQ</a> — поиск и оплата парковок (B2C/B2B)</h6>
+          <p>Сервис на стыке финтеха и городской инфраструктуры. Дипломный проект по специальности «Прикладная информатика».</p>
+          <ul>
+            <li>Полный цикл: глубинные интервью, JTBD, User Stories для водителей и владельцев парковок.</li>
+            <li>User Flow с edge cases — ошибки оплаты, переполненная парковка — без тупиковых путей.</li>
+            <li>Интерфейс ML-прогноза занятости: пользователь выбирает парковку заранее.</li>
+            <li>B2B-дашборд с визуализацией выручки и загрузки.</li>
+            <li>UI Kit в Figma на Components, Auto Layout и стилях — точная передача в разработку.</li>
+          </ul>
+
+          <h6><a href="meteoritm.html">МетеоРитм</a> — прогноз погоды для метеозависимых</h6>
+          <p>Продуктовая команда акселератора. Проект вошёл в ТОП-8 из 50 стартапов.</p>
+          <ul>
+            <li>Роль Product Owner и Lead Designer: бэклог, приоритеты, защита решений перед экспертами.</li>
+            <li>Система мониторинга давления, УФ-индекса и магнитных бурь с персональными рекомендациями.</li>
+            <li>Информационная архитектура для ежедневного использования, серия юзабилити-тестов.</li>
+            <li>Учёл ограничения API метеослужб и фронтенд-разработки (HTML/CSS).</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job__head"><h5>Образование</h5></div>
+          <h6>Магистратура, СПбГУТ — с 2026</h6>
+          <p>Информационные технологии в дизайне</p>
+          <h6>Бакалавриат, РГГМУ — 2022–2026</h6>
+          <p>Прикладная информатика, Институт информационных систем и геотехнологий</p>
+          <h6>Курс «Веб-дизайн 3.0», Саня Кво — 2024</h6>
+        </article>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Сертификат акселератора -->
+<dialog class="modal modal--img" id="cert" aria-labelledby="cert-t">
+  <div class="modal__bar">
+    <h2 id="cert-t">Сертификат акселератора</h2>
+    <button class="close" type="button" data-close aria-label="Закрыть сертификат"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+  </div>
+  <div class="modal__body">
+    <img src="img/mr-cert.webp" width="1229" height="867" alt="Сертификат участника акселерационной программы «Гидромет-Геосфера» на имя Носикова Андрея Алексеевича" loading="lazy">
+    <p>Команда ГМ-7 защитила проект <a href="meteoritm.html">МетеоРитм</a> и вошла в ТОП-8 из 50 стартапов.</p>
+  </div>
+</dialog>
+</body>
+</html>
