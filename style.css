@@ -337,8 +337,38 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .modal--img { width: min(920px, calc(100vw - 2 * var(--gutter))); }
 .modal--img img { width: 100%; border-radius: var(--r-sm); }
 .modal--img p { color: var(--muted); font-size: 16px; margin: 16px 0 0; }
+/* Просмотр картинок кейса крупно */
+main[data-zoom] figure img { cursor: zoom-in; }
+.lightbox {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: transparent; color: var(--on-night); overflow: hidden;
+}
+.lightbox::backdrop { background: rgb(8 9 22 / .92); backdrop-filter: blur(6px); }
+.lightbox__stage {
+  position: absolute; inset: 72px var(--gutter) 64px; overflow: auto; overscroll-behavior: contain;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox__stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; flex: none; border-radius: var(--r-sm); cursor: zoom-in; }
+.lightbox.is-zoomed .lightbox__stage { display: block; }
+.lightbox.is-zoomed .lightbox__stage img { max-width: none; max-height: none; margin: 0 auto; cursor: zoom-out; }
+.lightbox__cap {
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 64px; margin: 0; max-width: none;
+  display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 15px; text-align: center;
+}
+.lightbox__cap small { color: var(--on-night-muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.lightbox .close { position: absolute; border-color: var(--on-night); color: var(--on-night); background: rgb(8 9 22 / .5); }
+.lightbox .close:hover { background: var(--on-night); color: var(--night); }
+.lightbox__close { top: 16px; right: var(--gutter); }
+.lightbox__nav { top: 50%; translate: 0 -50%; width: 48px; height: 48px; }
+.lightbox__prev { left: 12px; }
+.lightbox__next { right: 12px; }
+@media (max-width: 720px) {
+  .lightbox__nav { top: auto; bottom: 8px; translate: none; }
+  .lightbox__cap { padding-inline: 56px; }
+}
 @media (prefers-reduced-motion: no-preference) {
   .modal[open] { animation: pop .28s cubic-bezier(.2,.7,.1,1); }
+  .lightbox[open] .lightbox__stage img { animation: pop .24s cubic-bezier(.2,.7,.1,1); }
   @keyframes pop { from { opacity: 0; transform: translateY(16px) scale(.98); } }
 }
 

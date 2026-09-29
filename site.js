@@ -41,4 +41,58 @@
   // index.html#resume открывает резюме сразу (ссылка со страниц кейсов)
   const id = location.hash.slice(1);
   if (id && document.getElementById(id)?.tagName === "DIALOG") open(id);
+
+  // Просмотр картинок кейса крупно: <main data-zoom> — все картинки в <figure>.
+  // Стрелки и ←/→ листают, клик по картинке — реальный размер, Esc закрывает.
+  const pics = [...document.querySelectorAll("main[data-zoom] figure img")];
+  if (pics.length) {
+    const box = document.createElement("dialog");
+    box.className = "lightbox";
+    box.setAttribute("aria-label", "Просмотр изображения");
+    box.innerHTML = `
+      <div class="lightbox__stage"><img alt=""></div>
+      <p class="lightbox__cap"><span></span><small></small></p>
+      <button class="close lightbox__close" type="button" data-close aria-label="Закрыть" autofocus><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+      <button class="close lightbox__nav lightbox__prev" type="button" aria-label="Предыдущее изображение"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="close lightbox__nav lightbox__next" type="button" aria-label="Следующее изображение"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></button>`;
+    document.body.append(box);
+    const stage = box.querySelector(".lightbox__stage");
+    const big = stage.querySelector("img");
+    const cap = box.querySelector(".lightbox__cap span");
+    const count = box.querySelector(".lightbox__cap small");
+    let cur = 0;
+
+    const show = (i) => {
+      cur = (i + pics.length) % pics.length;
+      const p = pics[cur];
+      box.classList.remove("is-zoomed");
+      big.src = p.currentSrc || p.src;
+      big.alt = p.alt;
+      cap.textContent = p.closest("figure").querySelector("figcaption")?.textContent || p.alt;
+      count.textContent = `${cur + 1} / ${pics.length}`;
+    };
+
+    pics.forEach((p, i) => {
+      p.tabIndex = 0;
+      p.setAttribute("role", "button");
+      p.setAttribute("aria-label", `Открыть крупно: ${p.alt}`);
+      const go = () => { show(i); box.showModal(); };
+      p.addEventListener("click", go);
+      p.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    });
+
+    box.querySelector(".lightbox__prev").addEventListener("click", () => show(cur - 1));
+    box.querySelector(".lightbox__next").addEventListener("click", () => show(cur + 1));
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(cur - 1);
+      if (e.key === "ArrowRight") show(cur + 1);
+    });
+    // клик мимо картинки закрывает, по картинке — реальный размер (если она больше экрана)
+    box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
+    stage.addEventListener("click", (e) => {
+      if (e.target !== big) return box.close();
+      const fits = big.naturalWidth <= stage.clientWidth && big.naturalHeight <= stage.clientHeight;
+      if (!fits || box.classList.contains("is-zoomed")) box.classList.toggle("is-zoomed");
+    });
+  }
 })();
