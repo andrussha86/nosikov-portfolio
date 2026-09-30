@@ -294,6 +294,8 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .fig img { border-radius: var(--r-sm); background: var(--surface); width: 100%; }
 .fig figcaption { color: var(--muted); font-size: 15px; margin-top: 12px; }
 .fig--dark img { background: #000; }
+/* схемы с прозрачным фоном (User Flow) — на белой подложке с полями */
+.fig--white img, .lightbox.is-white .lightbox__stage img { background: #fff; box-sizing: border-box; padding: clamp(12px, 2.4vw, 32px); }
 
 /* Лента экранов: левый край совпадает с сеткой */
 .screens {

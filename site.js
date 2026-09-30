@@ -66,6 +66,7 @@
       cur = (i + pics.length) % pics.length;
       const p = pics[cur];
       box.classList.remove("is-zoomed");
+      box.classList.toggle("is-white", !!p.closest(".fig--white"));
       big.src = p.currentSrc || p.src;
       big.alt = p.alt;
       cap.textContent = p.closest("figure").querySelector("figcaption")?.textContent || p.alt;
