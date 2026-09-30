@@ -50,11 +50,11 @@
 
   <div class="wrap"><figure class="cover"><img src="img/cover-parq.webp" width="1680" height="1120" alt="Экран карты PARQ на iPhone"></figure></div>
 
-  <div class="screens" role="region" aria-label="Основные экраны PARQ" tabindex="0">
+  <div class="wrap cs-lead"><div class="stage"><div class="screens" role="region" aria-label="Основные экраны PARQ" tabindex="0">
     <figure><img src="img/parq-s-map.webp" width="437" height="888" alt="Карта с выбранной парковкой и прогнозом загрузки" loading="lazy"><figcaption>Парковка и прогноз загрузки</figcaption></figure>
     <figure><img src="img/parq-s-map2.webp" width="437" height="888" alt="Карточка парковки поверх карты" loading="lazy"><figcaption>Выбор автомобиля</figcaption></figure>
     <figure><img src="img/parq-s-pay.webp" width="437" height="888" alt="Экран подтверждения оплаты" loading="lazy"><figcaption>Проверка данных и оплата</figcaption></figure>
-  </div>
+  </div></div></div>
 
   <section class="cs-block wrap">
     <div class="cs-cols grid">
@@ -100,10 +100,31 @@
         <p>До этого изучил конкурентов и выделил паттерны, без которых сценарий не работает. Отдельно продумал JTBD для владельцев парковок.</p>
       </div>
     </div>
-    <figure class="fig fig--dark"><img src="img/parq-jtbd.webp" width="1800" height="1184" alt="Схема Core Functional Job и Growth" loading="lazy"><figcaption>CFJ и Growth: MVP и расширение функционала</figcaption></figure>
-    <div class="grid">
-      <figure class="fig c-mid"><img src="img/parq-do-user.webp" width="1420" height="1247" alt="Пример Desired Outcome для водителя" loading="lazy"><figcaption>Desired Outcome: водитель</figcaption></figure>
-      <figure class="fig c-side"><img src="img/parq-do-owner.webp" width="1420" height="1247" alt="Пример Desired Outcome для владельца" loading="lazy"><figcaption>Desired Outcome: владелец парковки</figcaption></figure>
+    <figure class="fig fig--sheet"><img src="img/parq-jtbd.webp" width="3067" height="2018" alt="Схема Core Functional Job и Growth" loading="lazy"><figcaption>CFJ и Growth: MVP и расширение функционала</figcaption></figure>
+    <h3 class="sub">Desired Outcome по этапам</h3>
+    <div class="outcomes thirds">
+      <div class="outcomes__stage">
+        <h4 class="outcomes__title"><span>01</span>Поиск парковки</h4>
+        <figure class="fig fig--sheet"><img src="img/parq-do-1-1.webp" width="1420" height="1247" alt="Desired Outcome 1.1: когда я планирую выехать в центр города, хочу понять, куда ехать, чтобы припарковаться" loading="lazy"><figcaption>Desired Outcome 1.1</figcaption></figure>
+      </div>
+      <div class="outcomes__stage">
+        <h4 class="outcomes__title"><span>02</span>Оплата</h4>
+        <figure class="fig fig--sheet"><img src="img/parq-do-2-1.webp" width="1420" height="1247" alt="Desired Outcome 2.1: когда я выбрал парковку, хочу быть уверенным, что оплачиваю свою машину на нужной парковке" loading="lazy"><figcaption>Desired Outcome 2.1</figcaption></figure>
+      </div>
+      <div class="outcomes__stage">
+        <h4 class="outcomes__title"><span>03</span>Продление</h4>
+        <figure class="fig fig--sheet"><img src="img/parq-do-3-1.webp" width="1420" height="1247" alt="Desired Outcome 3.1: когда я оплатил парковку, хочу, чтобы меня уведомили об окончании времени и предложили продлить" loading="lazy"><figcaption>Desired Outcome 3.1</figcaption></figure>
+      </div>
+    </div>
+    <div class="more">
+      <p><b>Ещё 4 Desired Outcome.</b> Для каждого этапа расписал по 2–3 исхода и решения под них — здесь по одному на этап.</p>
+      <button class="btn btn--ghost" type="button" data-zoom-open>Смотреть остальные</button>
+      <div hidden>
+        <figure class="fig fig--sheet"><img src="img/parq-do-1-2.webp" width="1420" height="1247" alt="Desired Outcome 1.2: когда я в центре города, хочу быстро найти ближайшее место и припарковаться без усилий" loading="lazy"><figcaption>Desired Outcome 1.2</figcaption></figure>
+        <figure class="fig fig--sheet"><img src="img/parq-do-2-2.webp" width="1420" height="1247" alt="Desired Outcome 2.2: когда я нашёл, куда припарковаться, хочу оплатить без лишних усилий и не тратить время" loading="lazy"><figcaption>Desired Outcome 2.2</figcaption></figure>
+        <figure class="fig fig--sheet"><img src="img/parq-do-3-2.webp" width="1420" height="1162" alt="Desired Outcome 3.2: когда время парковки подходит к концу, хочу продлить её, чтобы машину не оштрафовали" loading="lazy"><figcaption>Desired Outcome 3.2</figcaption></figure>
+        <figure class="fig fig--sheet"><img src="img/parq-do-3-3.webp" width="1420" height="1186" alt="Desired Outcome 3.3: когда я продлеваю парковку, хочу знать точное время, чтобы не ошибиться" loading="lazy"><figcaption>Desired Outcome 3.3</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -112,8 +133,8 @@
       <h2 class="c-label">User Flow</h2>
       <div class="cs-text c-body"><p>Две роли — два маршрута. Водитель ищет, платит и продлевает; владелец добавляет парковку, задаёт тарифы и смотрит аналитику.</p></div>
     </div>
-    <figure class="fig fig--white"><img src="img/parq-flow-user.webp" width="1800" height="1268" alt="User Flow водителя" loading="lazy"><figcaption>Для водителей</figcaption></figure>
-    <figure class="fig fig--white"><img src="img/parq-flow-owner.webp" width="1800" height="1642" alt="User Flow владельца парковки" loading="lazy"><figcaption>Для владельцев и муниципалитетов</figcaption></figure>
+    <figure class="fig fig--sheet"><img src="img/parq-flow-user.webp" width="3600" height="2033" alt="User Flow водителя" loading="lazy"><figcaption>Для водителей</figcaption></figure>
+    <figure class="fig fig--sheet"><img src="img/parq-flow-owner.webp" width="3600" height="3416" alt="User Flow владельца парковки" loading="lazy"><figcaption>Для владельцев и муниципалитетов</figcaption></figure>
   </section>
 
   <section class="cs-block">
@@ -132,7 +153,6 @@
       <figure><img src="img/parq-wf2.webp" width="437" height="888" alt="Вайрфрейм: вход по номеру" loading="lazy"></figure>
       <figure><img src="img/parq-wf6.webp" width="437" height="888" alt="Вайрфрейм: кабинет владельца" loading="lazy"></figure>
     </div></div></div>
-    <p class="wrap"><span class="hint">Ленту можно листать</span></p>
   </section>
 
   <section class="cs-block">
@@ -143,7 +163,8 @@
         <p><a href="https://www.figma.com/design/3M7fJGtbLuMRVY7cXIs8MJ/Parking?node-id=889-1590" target="_blank" rel="noopener">Открыть макеты в Figma</a></p>
       </div>
     </div>
-    <div class="screens" role="region" aria-label="Интерфейс для водителей" tabindex="0">
+    <div class="wrap"><h3 class="sub">Приложение водителя</h3></div>
+    <div class="wrap"><div class="stage"><div class="screens" role="region" aria-label="Интерфейс для водителей" tabindex="0">
       <figure><img src="img/parq-u9.webp" width="437" height="888" alt="Вход по номеру телефона" loading="lazy"><figcaption>Вход</figcaption></figure>
       <figure><img src="img/parq-u6.webp" width="437" height="888" alt="Карта с парковкой и прогнозом загрузки" loading="lazy"><figcaption>Карта</figcaption></figure>
       <figure><img src="img/parq-u5.webp" width="437" height="888" alt="Проверка данных перед оплатой" loading="lazy"><figcaption>Оплата</figcaption></figure>
@@ -153,7 +174,7 @@
       <figure><img src="img/parq-u4.webp" width="437" height="888" alt="Экран ошибки оплаты" loading="lazy"><figcaption>Ошибка</figcaption></figure>
       <figure><img src="img/parq-u8.webp" width="437" height="888" alt="Аккаунт водителя" loading="lazy"><figcaption>Аккаунт</figcaption></figure>
       <figure><img src="img/parq-u10.webp" width="437" height="888" alt="Номера автомобилей" loading="lazy"><figcaption>Номера ТС</figcaption></figure>
-    </div>
+    </div></div></div>
     <div class="wrap"><h3 class="sub">Кабинет владельца</h3></div>
     <div class="wrap"><div class="stage"><div class="screens" role="region" aria-label="Интерфейс для владельцев" tabindex="0">
       <figure><img src="img/parq-o4.webp" width="437" height="888" alt="Список парковок владельца" loading="lazy"><figcaption>Мои парковки</figcaption></figure>
@@ -169,7 +190,7 @@
       <h2 class="c-label">UI-kit</h2>
       <div class="cs-text c-body"><p>Кнопки, поля, чипы номеров, переключатели и графики загрузки — со всеми состояниями, чтобы экраны собирались из готовых деталей.</p></div>
     </div>
-    <figure class="fig fig--dark"><img src="img/parq-kit.webp" width="1622" height="985" alt="UI-kit PARQ" loading="lazy"></figure>
+    <figure class="fig fig--sheet fig--pad"><img src="img/parq-kit.webp" width="1622" height="985" alt="UI-kit PARQ" loading="lazy"></figure>
   </section>
 
   <a class="next wrap" href="meteoritm.html"><small>Следующий кейс</small><strong>МетеоРитм</strong></a>

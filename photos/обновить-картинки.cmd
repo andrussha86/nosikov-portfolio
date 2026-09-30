@@ -14,6 +14,7 @@ if not defined PY (
 )
 
 %PY% -c "import PIL" 2>nul || %PY% -m pip install --quiet pillow
+%PY% -c "import pymupdf" 2>nul || %PY% -m pip install --quiet pymupdf
 %PY% tools\photos.py
 echo.
 pause

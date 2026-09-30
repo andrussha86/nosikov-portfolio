@@ -11,7 +11,8 @@
 - **Обложки** (`cover-*`) — 3 : 2, от 2400×1600. На главной обрезаются до 3 : 2 (у малых проектов — до 2 : 1).
 - **Экраны приложений** в лентах — в рамке телефона, как сейчас, одной высоты внутри ленты;
   от 900 px по ширине, чтобы в увеличенном просмотре не было мыла.
-- **Схемы** (User Flow, JTBD, UI-kit) — от 2400 px по ширине: их рассматривают крупно.
+- **Схемы** (User Flow, JTBD, Desired Outcome, UI-kit) — от 2400 px по ширине, можно PDF:
+  их рассматривают крупно. Прозрачный фон сам заменится светлым, до 3600 px по длинной стороне.
 
 ## Главная
 
@@ -31,11 +32,16 @@
 | <img src="../img/parq-s-map.webp" width="120"> | `parq-s-map` | 437×888 | Карта с выбранной парковкой и прогнозом загрузки |
 | <img src="../img/parq-s-map2.webp" width="120"> | `parq-s-map2` | 437×888 | Карточка парковки поверх карты |
 | <img src="../img/parq-s-pay.webp" width="120"> | `parq-s-pay` | 437×888 | Экран подтверждения оплаты |
-| <img src="../img/parq-jtbd.webp" width="120"> | `parq-jtbd` | 1800×1184 | Схема Core Functional Job и Growth |
-| <img src="../img/parq-do-user.webp" width="120"> | `parq-do-user` | 1420×1247 | Пример Desired Outcome для водителя |
-| <img src="../img/parq-do-owner.webp" width="120"> | `parq-do-owner` | 1420×1247 | Пример Desired Outcome для владельца |
-| <img src="../img/parq-flow-user.webp" width="120"> | `parq-flow-user` | 1800×1268 | User Flow водителя |
-| <img src="../img/parq-flow-owner.webp" width="120"> | `parq-flow-owner` | 1800×1642 | User Flow владельца парковки |
+| <img src="../img/parq-jtbd.webp" width="120"> | `parq-jtbd` | 3067×2018 | Схема Core Functional Job и Growth |
+| <img src="../img/parq-do-1-1.webp" width="120"> | `parq-do-1-1` | 1420×1247 | Desired Outcome 1.1: когда я планирую выехать в центр города, хочу понять, куда ехать, чтобы припарковаться |
+| <img src="../img/parq-do-1-2.webp" width="120"> | `parq-do-1-2` | 1420×1247 | Desired Outcome 1.2: когда я в центре города, хочу быстро найти ближайшее место и припарковаться без усилий |
+| <img src="../img/parq-do-2-1.webp" width="120"> | `parq-do-2-1` | 1420×1247 | Desired Outcome 2.1: когда я выбрал парковку, хочу быть уверенным, что оплачиваю свою машину на нужной парковке |
+| <img src="../img/parq-do-2-2.webp" width="120"> | `parq-do-2-2` | 1420×1247 | Desired Outcome 2.2: когда я нашёл, куда припарковаться, хочу оплатить без лишних усилий и не тратить время |
+| <img src="../img/parq-do-3-1.webp" width="120"> | `parq-do-3-1` | 1420×1247 | Desired Outcome 3.1: когда я оплатил парковку, хочу, чтобы меня уведомили об окончании времени и предложили продлить |
+| <img src="../img/parq-do-3-2.webp" width="120"> | `parq-do-3-2` | 1420×1162 | Desired Outcome 3.2: когда время парковки подходит к концу, хочу продлить её, чтобы машину не оштрафовали |
+| <img src="../img/parq-do-3-3.webp" width="120"> | `parq-do-3-3` | 1420×1186 | Desired Outcome 3.3: когда я продлеваю парковку, хочу знать точное время, чтобы не ошибиться |
+| <img src="../img/parq-flow-user.webp" width="120"> | `parq-flow-user` | 3600×2033 | User Flow водителя |
+| <img src="../img/parq-flow-owner.webp" width="120"> | `parq-flow-owner` | 3600×3416 | User Flow владельца парковки |
 | <img src="../img/parq-wf5.webp" width="120"> | `parq-wf5` | 437×888 | Вайрфрейм: карта и загрузка |
 | <img src="../img/parq-wf4.webp" width="120"> | `parq-wf4` | 437×888 | Вайрфрейм: проверка данных |
 | <img src="../img/parq-wf3.webp" width="120"> | `parq-wf3` | 437×888 | Вайрфрейм: выбор времени |

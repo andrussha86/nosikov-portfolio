@@ -20,7 +20,7 @@ const palettes = {
 const vert = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0., 1.); }`;
 const frag = `
 precision highp float;
-uniform vec2 res; uniform float t;
+uniform vec2 res, m; uniform float t;
 uniform vec3 c0, c1, c2, c3;
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float noise(vec2 p){
@@ -36,6 +36,7 @@ void main(){
   col = mix(col, c1, smoothstep(.22, .62, fbm(p + 1.6*r)));
   col = mix(col, c2, smoothstep(.32, .68, r.x) * .85);
   col = mix(col, c3, smoothstep(.3, .66, q.y) * .6);
+  col = mix(col, c2, .55 * smoothstep(.6, 0., distance(p, m)));   // мягкое пятно света под курсором
   col += (hash(gl_FragCoord.xy + t) - .5) / 255.;   // против полос (banding), зерна не видно
   gl_FragColor = vec4(col, 1.);
 }`;
@@ -69,10 +70,20 @@ function mount(el, palette) {
     gl.uniform2f(u("res"), canvas.width, canvas.height);
   };
 
+  // курсор в координатах шейдера; пятно догоняет его плавно. Пока мышь не двигалась — за экраном.
+  let aim = [-9, -9], spot = [-9, -9];
+  addEventListener("pointermove", (e) => {
+    const r = el.getBoundingClientRect();
+    aim = [(e.clientX - r.left) / r.height * .9, (1 - (e.clientY - r.top) / r.height) * .9];
+    if (spot[0] < -8) spot = aim;
+  }, { passive: true });
+
   let visible = false, raf = 0;
   const t0 = performance.now(), seed = Math.random() * 100;
   const draw = (now) => {
     gl.uniform1f(u("t"), seed + (now - t0) / 1000);
+    spot = [spot[0] + (aim[0] - spot[0]) * .06, spot[1] + (aim[1] - spot[1]) * .06];
+    gl.uniform2f(u("m"), spot[0], spot[1]);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     if (visible && !still.matches) raf = requestAnimationFrame(draw);
   };

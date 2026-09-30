@@ -42,6 +42,51 @@
   const id = location.hash.slice(1);
   if (id && document.getElementById(id)?.tagName === "DIALOG") open(id);
 
+  // Ленты экранов: стрелки, мягкие края и полоса прогресса — только когда экраны не помещаются.
+  const arrow = (d) => `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+  document.querySelectorAll(".stage").forEach((stage) => {
+    const strip = stage.querySelector(".screens");
+    if (!strip) return;
+    const btn = (cls, label, d, dir) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = `stage__btn ${cls}`;
+      b.setAttribute("aria-label", label);
+      b.innerHTML = arrow(d);
+      b.addEventListener("click", () => strip.scrollBy({ left: dir * strip.clientWidth * 0.8, behavior: "smooth" }));
+      stage.append(b);
+      return b;
+    };
+    const prev = btn("stage__prev", "Предыдущие экраны", "M10 3L5 8l5 5", -1);
+    const next = btn("stage__next", "Следующие экраны", "M6 3l5 5-5 5", 1);
+    const bar = document.createElement("div");
+    bar.className = "stage__bar";
+    bar.setAttribute("aria-hidden", "true");
+    bar.innerHTML = "<i></i>";
+    stage.append(bar);
+    const thumb = bar.firstChild;
+
+    const sync = () => {
+      const max = strip.scrollWidth - strip.clientWidth;
+      const scrollable = max > 2;
+      const x = strip.scrollLeft;
+      prev.hidden = next.hidden = bar.hidden = !scrollable;
+      prev.disabled = x <= 2;
+      next.disabled = x >= max - 2;
+      stage.classList.toggle("can-prev", scrollable && x > 2);
+      stage.classList.toggle("can-next", scrollable && x < max - 2);
+      if (scrollable) {
+        const k = strip.clientWidth / strip.scrollWidth;
+        thumb.style.width = `${k * 100}%`;
+        thumb.style.transform = `translateX(${(x / max) * (1 / k - 1) * 100}%)`;
+      }
+    };
+    strip.addEventListener("scroll", sync, { passive: true });
+    new ResizeObserver(sync).observe(strip);
+    strip.querySelectorAll("img").forEach((img) => img.addEventListener("load", sync, { once: true }));
+    sync();
+  });
+
   // Просмотр картинок кейса крупно: <main data-zoom> — все картинки в <figure>.
   // Стрелки и ←/→ листают, клик по картинке — реальный размер, Esc закрывает.
   const pics = [...document.querySelectorAll("main[data-zoom] figure img")];
@@ -66,7 +111,8 @@
       cur = (i + pics.length) % pics.length;
       const p = pics[cur];
       box.classList.remove("is-zoomed");
-      box.classList.toggle("is-white", !!p.closest(".fig--white"));
+      box.classList.toggle("is-sheet", !!p.closest(".fig--sheet"));
+      box.classList.toggle("is-pad", !!p.closest(".fig--pad"));
       big.src = p.currentSrc || p.src;
       big.alt = p.alt;
       cap.textContent = p.closest("figure").querySelector("figcaption")?.textContent || p.alt;
@@ -81,6 +127,10 @@
       p.addEventListener("click", go);
       p.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
     });
+
+    // кнопка «Смотреть остальные»: картинки лежат рядом в скрытом блоке и открываются сразу в просмотре
+    document.querySelectorAll("[data-zoom-open]").forEach((b) =>
+      b.addEventListener("click", () => b.parentElement.querySelector("figure img")?.click()));
 
     box.querySelector(".lightbox__prev").addEventListener("click", () => show(cur - 1));
     box.querySelector(".lightbox__next").addEventListener("click", () => show(cur + 1));

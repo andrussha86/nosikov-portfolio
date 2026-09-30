@@ -25,7 +25,9 @@
   --space: clamp(48px, 6.5vw, 96px);   /* вертикальный ритм между блоками */
   --header: 68px;
   --r-lg: 28px;
+  --r-md: 20px;
   --r-sm: 12px;
+  --sheet: #f3f6fd;     /* светлый лист под схемами — цвет рамок из Figma */
   color-scheme: dark;
 }
 :root[data-theme="light"] {
@@ -153,6 +155,36 @@ p { margin: 0 0 1em; max-width: 62ch; }
     radial-gradient(45% 50% at 10% 75%, #ffd8c9 0%, transparent 70%),
     var(--paper);
 }
+
+/* Главная: тот же градиент, но на всю страницу — закреплён за окном, секции прозрачные */
+.sg--page { position: fixed; z-index: -1; -webkit-mask-image: none; mask-image: none; }
+
+/* ─── Движение на главной (motion.js; класс js-motion ставится только там и только без reduced-motion) ─── */
+.js-motion [data-reveal] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.2,.7,.1,1), transform .8s cubic-bezier(.2,.7,.1,1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js-motion [data-reveal].is-in { opacity: 1; transform: none; }
+/* обложки кейсов наклоняются за курсором, по ним скользит блик */
+.js-motion .case > .case__media {
+  position: relative; transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .3s ease-out; will-change: transform;
+}
+.js-motion .case > .case__media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(45% 55% at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / .22), transparent 70%);
+}
+.js-motion .case > .case__media:hover::after { opacity: 1; }
+/* портрет чуть смещается за курсором */
+.js-motion .hero__photo img { transform: translate(var(--px, 0px), var(--py, 0px)) scale(1.06); transition: transform .5s ease-out; }
+/* строки малых проектов и навыков отзываются на наведение */
+.js-motion .minor__item .case__media { transition: transform .4s cubic-bezier(.2,.7,.1,1); }
+.js-motion .minor__item:hover .case__media { transform: translateX(8px); }
+.js-motion .skills li { transition: padding-left .25s ease-out, color .25s; }
+.js-motion .skills li:hover { padding-left: 10px; color: var(--dusk); }
+.js-motion .flow li::before { transition: transform .3s cubic-bezier(.2,.7,.1,1), background-color .3s, color .3s; }
+.js-motion .flow li:hover::before { transform: scale(1.12); background: var(--ink); color: var(--paper); }
 
 /* ─── Sections ───────────────────────────────────────────── */
 .section { padding-block: var(--space); border-top: 1px solid var(--line); }
@@ -291,27 +323,73 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .pair h3 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.02em; }
 .pair p { font-size: 17px; }
 .fig { margin: clamp(28px, 3.5vw, 48px) 0 0; }
-.fig img { border-radius: var(--r-sm); background: var(--surface); width: 100%; }
+.fig img { border-radius: var(--r-md); width: 100%; transition: box-shadow .2s; }
 .fig figcaption { color: var(--muted); font-size: 15px; margin-top: 12px; }
-.fig--dark img { background: #000; }
-/* схемы с прозрачным фоном (User Flow) — на белой подложке с полями */
-.fig--white img, .lightbox.is-white .lightbox__stage img { background: #fff; box-sizing: border-box; padding: clamp(12px, 2.4vw, 32px); }
+main[data-zoom] .fig img:hover { box-shadow: 0 0 0 2px var(--dusk); }
+/* Схемы (JTBD, User Flow, UI-kit) — светлый лист со своим скруглением.
+   Прозрачные схемы (UI-kit, User Flow МетеоРитма) — ещё и с полями. */
+.fig--sheet img, .lightbox.is-sheet .lightbox__stage img { background: var(--sheet); }
+.fig--pad img, .lightbox.is-pad .lightbox__stage img { padding: clamp(12px, 2.4vw, 32px); }
+:root[data-theme="light"] .fig--sheet img { box-shadow: 0 0 0 1px var(--line); }
+:root[data-theme="light"] main[data-zoom] .fig--sheet img:hover { box-shadow: 0 0 0 2px var(--dusk); }
 
-/* Лента экранов: левый край совпадает с сеткой */
-.screens {
-  display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-  padding: 8px max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter))) 20px;
-  scroll-padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
-  margin: clamp(28px, 3.5vw, 48px) 0 0;
-  scrollbar-width: thin; scrollbar-color: var(--dusk) transparent;
+/* Desired Outcome: три колонки — три этапа, как на схеме CFJ */
+.outcomes { margin-top: clamp(24px, 3vw, 36px); row-gap: 40px; align-items: start; }
+.outcomes__stage { border-top: 2px solid var(--ink); padding-top: 16px; }
+.outcomes__title { display: flex; align-items: baseline; gap: 12px; font-size: 21px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; margin: 0; }
+.outcomes__title span { color: var(--muted); font-size: 15px; font-weight: 500; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.outcomes .fig { margin-top: 20px; }
+.outcomes .fig figcaption { font-size: 14px; margin-top: 8px; }
+
+/* плашка «ещё N» под сеткой: остальные картинки открываются в просмотре */
+.more {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap;
+  margin-top: clamp(24px, 3vw, 36px); padding: clamp(18px, 2vw, 24px) clamp(20px, 2.4vw, 32px);
+  background: var(--dusk-soft); border-radius: var(--r-md);
 }
-.screens figure { flex: 0 0 auto; width: clamp(200px, 21vw, 280px); margin: 0; scroll-snap-align: start; }
+.more p { margin: 0; font-size: 17px; max-width: 60ch; color: var(--muted); }
+.more b { color: var(--ink); font-weight: 600; }
+
+/* Лента экранов: всегда в плашке, поля одинаковые со всех сторон.
+   Если экраны помещаются — стоят по центру, если нет — листаются (стрелки добавляет site.js). */
+.stage { --pad: clamp(24px, 3vw, 40px); position: relative; background: var(--dusk-soft); border-radius: var(--r-lg); margin-top: clamp(28px, 3.5vw, 48px); overflow: hidden; }
+.screens {
+  display: flex; justify-content: safe center; gap: var(--gap);
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+  padding: var(--pad); scroll-padding-inline: var(--pad);
+}
+.screens::-webkit-scrollbar { display: none; }
+.screens:focus-visible { outline-offset: -3px; border-radius: var(--r-lg); }
+.screens figure { flex: 0 0 auto; width: clamp(200px, 19vw, 256px); margin: 0; scroll-snap-align: start; }
 .screens img { width: 100%; }
-.screens figcaption { color: var(--muted); font-size: 14px; margin-top: 10px; }
-.stage { background: var(--dusk-soft); border-radius: var(--r-lg); margin-top: clamp(28px, 3.5vw, 48px); padding-block: 32px 12px; }
-.stage .screens { margin: 0; padding-inline: 32px; scroll-padding-inline: 32px; }
+.screens figcaption { color: var(--muted); font-size: 14px; margin-top: 12px; text-align: center; }
+/* мягкие края вместо обрезанного телефона: лента растворяется в плашке */
+.screens {
+  --fl: 0px; --fr: 0px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent);
+}
+.stage.can-prev .screens { --fl: 72px; }
+.stage.can-next .screens { --fr: 72px; }
+.stage__btn {
+  position: absolute; top: calc(50% - 22px); z-index: 2; width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 82%, transparent); border: 1.5px solid var(--line);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: opacity .2s, background-color .2s, color .2s, border-color .2s;
+}
+.stage__btn:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.stage__btn:disabled { opacity: 0; pointer-events: none; }
+.stage__btn[hidden], .stage__bar[hidden] { display: none; }
+.stage__btn svg { width: 16px; height: 16px; }
+.stage__prev { left: 12px; }
+.stage__next { right: 12px; }
+/* полоса прогресса вместо системного скроллбара */
+.stage__bar { position: absolute; left: var(--pad); right: var(--pad); bottom: 14px; height: 3px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 12%, transparent); }
+.stage__bar i { display: block; height: 100%; border-radius: inherit; background: var(--dusk); }
+.cs-lead { padding-bottom: var(--space); }   /* лента сразу под обложкой, до первого блока */
 .sub { font-size: clamp(24px, 2.4vw, 34px); letter-spacing: -0.03em; margin: clamp(40px, 5vw, 64px) 0 0; }
-.hint { color: var(--muted); font-size: 15px; margin: 10px 0 0; }
+.wrap:has(> .sub) + .wrap > .stage { margin-top: clamp(20px, 2.4vw, 28px); }
 
 .next { display: block; text-decoration: none; padding-block: var(--space); border-top: 1px solid var(--line); }
 .next small { display: block; color: var(--muted); font-size: 16px; margin-bottom: 8px; }
@@ -418,11 +496,16 @@ main[data-zoom] figure img { cursor: zoom-in; }
   .edu li:not(:last-child)::before { top: auto; bottom: 8px; left: 27px; right: auto; transform: rotate(45deg); }
   .edu li.is-now::after { background: repeating-linear-gradient(180deg, var(--muted) 0 6px, transparent 6px 12px); }
   .pair { grid-template-columns: 1fr; }
-  .stage { border-radius: 0; margin-inline: calc(-1 * var(--gutter)); }
-  .stage .screens { padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .stage { --pad: var(--gutter); border-radius: 0; margin-inline: calc(-1 * var(--gutter)); }
+  .stage .screens { padding-block: 24px 36px; }
+  .outcomes { row-gap: 32px; }
   .minor__item { padding-block: 28px; }
 }
+@media (hover: none) {
+  .stage__btn { display: none; }   /* на телефоне ленту листают пальцем */
+}
 @media (max-width: 560px) {
+  .screens figure { width: min(240px, 64vw); }
   body { font-size: 17px; }
   .thirds { grid-template-columns: 1fr; }
   .skills, .links { row-gap: 0; }
