@@ -123,17 +123,19 @@ p { margin: 0 0 1em; max-width: 62ch; }
 }
 
 /* ─── Ночная зона: контакты + футер на одном градиенте ─────
-   Верх зоны растворяется из фона страницы, поэтому переход
-   от светлого блока к тёмному идёт плавно, без жёсткой границы. */
-.night { --fade: clamp(140px, 16vw, 260px); position: relative; isolation: isolate; overflow: hidden; padding-top: var(--fade); color: var(--on-night); }
+   Тёмный лист со скруглённым верхом «наезжает» на страницу — как остальные плашки сайта.
+   Раньше здесь было длинное растворение из фона, оно и давало пустоту перед контактами. */
+.night {
+  position: relative; isolation: isolate; overflow: hidden; color: var(--on-night);
+  padding-top: clamp(48px, 6vw, 88px);
+  border-radius: clamp(28px, 4.5vw, 64px) clamp(28px, 4.5vw, 64px) 0 0;
+}
 .sg {
   position: absolute; inset: 0; z-index: -1; overflow: hidden;
   background:
     radial-gradient(60% 50% at 85% 35%, #2b3170 0%, transparent 70%),
     radial-gradient(50% 50% at 5% 90%, #1d2250 0%, transparent 70%),
     var(--night);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
-          mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
 }
 .sg canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .sg canvas { opacity: 0; transition: opacity 1.2s ease; }
@@ -159,13 +161,33 @@ p { margin: 0 0 1em; max-width: 62ch; }
 /* Главная: тот же градиент, но на всю страницу — закреплён за окном, секции прозрачные */
 .sg--page { position: fixed; z-index: -1; -webkit-mask-image: none; mask-image: none; }
 
-/* ─── Движение на главной (motion.js; класс js-motion ставится только там и только без reduced-motion) ─── */
+/* ─── Движение (motion.js; класс js-motion ставится только без reduced-motion) ─── */
 .js-motion [data-reveal] {
   opacity: 0; transform: translateY(28px);
   transition: opacity .8s cubic-bezier(.2,.7,.1,1), transform .8s cubic-bezier(.2,.7,.1,1);
   transition-delay: calc(var(--i, 0) * 80ms);
 }
 .js-motion [data-reveal].is-in { opacity: 1; transform: none; }
+/* кейсы: название поднимается, как имя на главной */
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion .cs-title { animation: rise .9s cubic-bezier(.2,.7,.1,1) both; }
+}
+/* кейсы: полоса чтения */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 11; background: var(--dusk); transform: scaleX(0); transform-origin: 0 50%; }
+/* кейсы: обложка «наезжает» при прокрутке (масштаб задаёт motion.js) */
+.js-motion .cover img { transform: scale(var(--z, 1.16)); will-change: transform; }
+/* кейсы: телефоны встают по очереди и приподнимаются под курсором */
+.js-motion .stage[data-reveal] .screens figure {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .7s cubic-bezier(.2,.7,.1,1), transform .7s cubic-bezier(.2,.7,.1,1);
+  transition-delay: calc(.15s + var(--n, 0) * 90ms);
+}
+.js-motion .stage[data-reveal].is-in .screens figure { opacity: 1; transform: none; }
+.js-motion .screens img { transition: transform .35s cubic-bezier(.2,.7,.1,1); }
+.js-motion .screens figure:hover img { transform: translateY(-8px); }
+/* кейсы: «Следующий кейс» уезжает вправо под курсором */
+.js-motion .next strong { display: inline-block; transition: transform .45s cubic-bezier(.2,.7,.1,1), color .2s; }
+.js-motion .next:hover strong { transform: translateX(clamp(12px, 2vw, 28px)); }
 /* обложки кейсов наклоняются за курсором, по ним скользит блик */
 .js-motion .case > .case__media {
   position: relative; transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
